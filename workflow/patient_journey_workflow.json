@@ -1,0 +1,1282 @@
+{
+  "name": "Patient Journey Agent",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "4da1bf2f-8eff-40f9-a816-f0e072f15010",
+      "name": "Test Trigger"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "eb4dbdc6-d86c-4cf3-890a-1afe388983f9",
+              "name": "patient_name",
+              "value": "Priya Rathee",
+              "type": "string"
+            },
+            {
+              "id": "6510c87a-96df-4116-9f7f-3f5277aa4d18",
+              "name": "patient_phone",
+              "value": "917876213500",
+              "type": "string"
+            },
+            {
+              "id": "d665c3b4-4e38-4ba2-b1ed-94d1cc616322",
+              "name": "patient_email",
+              "value": "priya@example.com",
+              "type": "string"
+            },
+            {
+              "id": "3ea1979d-ea49-4511-aa56-3568d9fc7b14",
+              "name": "message_text",
+              "value": "Namaste doctor, mere papa ko achanak se bahut tez chest pain ho raha hai aur dard left haath tak ja raha hai. Saans lene mein bhi dikkat ho rahi hai aur thanda pasina aa raha hai. Please jaldi help chahiye, kya hum abhi clinic aa sakte hain?",
+              "type": "string"
+            },
+            {
+              "id": "e2d7dc7a-18d1-4ad1-b9e4-4e7f7f245809",
+              "name": "channel",
+              "value": "whatsapp",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        160,
+        0
+      ],
+      "id": "6693a5c6-5c5b-4f44-953e-08db6379dea9",
+      "name": "Demo Patient Message"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "53d1ffb5-f052-4be8-965a-4475ae6b2308",
+              "name": "clinic_name",
+              "value": "Sunrise Multi Speciality Clinic",
+              "type": "string"
+            },
+            {
+              "id": "de900c8e-85d3-4752-96e8-53cc229c858f",
+              "name": "clinic_phone",
+              "value": "+91 120 4567890",
+              "type": "string"
+            },
+            {
+              "id": "00d4f9c8-0124-4082-8974-7fb49e139fa0",
+              "name": "clinic_address",
+              "value": "Plot 12, Sector 18, Noida, Uttar Pradesh",
+              "type": "string"
+            },
+            {
+              "id": "786d2e34-511a-4d4e-b7b0-06aa4241e097",
+              "name": "doctor_email",
+              "value": "ausofintelligence@gmail.com",
+              "type": "string"
+            },
+            {
+              "id": "c4e6d73f-7eb9-4786-aaac-0a488745bc00",
+              "name": "doctor_roster",
+              "value": "Dr Anil Menon|General Medicine;Dr Kavita Rao|Dentistry;Dr Sneha Nair|Paediatrics;Dr Vikram Shah|Orthopaedics;Dr Priya Desai|Dermatology;Dr Rahul Bose|Cardiology",
+              "type": "string"
+            },
+            {
+              "id": "ecb0eb0c-7fc0-469e-bf2d-6b23d673c7f0",
+              "name": "open_hour",
+              "value": 10,
+              "type": "number"
+            },
+            {
+              "id": "0652c178-a465-42b0-bdcb-b67e4e3b6e63",
+              "name": "close_hour",
+              "value": 19,
+              "type": "number"
+            },
+            {
+              "id": "4f801ecf-53c8-45f3-a35f-6a2b2d840e22",
+              "name": "slot_minutes",
+              "value": 20,
+              "type": "number"
+            },
+            {
+              "id": "36a256d1-156d-4810-b1bc-361fbe67bd43",
+              "name": "dedupe_minutes",
+              "value": 30,
+              "type": "number"
+            },
+            {
+              "id": "eb58afa3-7cfa-49fc-bfdc-62c050934d64",
+              "name": "tz_offset_minutes",
+              "value": 330,
+              "type": "number"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        496,
+        -80
+      ],
+      "id": "bbb075d5-d90f-4b96-8b03-f4a15419edc8",
+      "name": "Config"
+    },
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "9b7a5a20-4c42-4e29-8895-5691f06bcbf8",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        160,
+        -160
+      ],
+      "id": "1432ea57-15da-4b9c-b3bb-5c0279c77509",
+      "name": "Request",
+      "webhookId": "9b7a5a20-4c42-4e29-8895-5691f06bcbf8"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1i0UpvT88WigqQcl71_blLubh0IIi1kPgueTSZfxb7oY",
+          "mode": "list",
+          "cachedResultName": "Clinic Master",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i0UpvT88WigqQcl71_blLubh0IIi1kPgueTSZfxb7oY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Patient_Log",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i0UpvT88WigqQcl71_blLubh0IIi1kPgueTSZfxb7oY/edit#gid=0"
+        },
+        "filtersUI": {
+          "values": []
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        656,
+        -80
+      ],
+      "id": "81367211-c23a-49ae-a89b-5a8f6b11b346",
+      "name": "Read Patient History",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "G3QagzDzhQeqoFIp",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "1i0UpvT88WigqQcl71_blLubh0IIi1kPgueTSZfxb7oY",
+          "mode": "list",
+          "cachedResultName": "Clinic Master",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i0UpvT88WigqQcl71_blLubh0IIi1kPgueTSZfxb7oY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": 1875703790,
+          "mode": "list",
+          "cachedResultName": "Clinic_KB",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i0UpvT88WigqQcl71_blLubh0IIi1kPgueTSZfxb7oY/edit#gid=1875703790"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        816,
+        -80
+      ],
+      "id": "09d3cd33-cf0d-4d78-b66a-f87d4774f1a6",
+      "name": "Read Clinic KB",
+      "alwaysOutputData": true,
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "G3QagzDzhQeqoFIp",
+          "name": "Google Sheets account"
+        }
+      },
+      "onError": "continueRegularOutput"
+    },
+    {
+      "parameters": {
+        "jsCode": "const cfg = $('Config').first().json;\nconst intake = $('Normalise Intake').first().json;\n\nconst kbRows = $input.all()\n  .map(i => i.json)\n  .filter(r => r && (r.question || r.Question));\n\nlet kb = '';\n\nkbRows.forEach(r => {\n  kb += String(r.question || r.Question) + ' :: ' +\n        String(r.answer || r.Answer || '') + '\\n';\n});\n\nif (!kb) {\n  kb = 'Clinic timings 10am to 7pm Monday to Saturday. Walk ins allowed but appointment preferred.';\n}\n\nconst roster = String(cfg.doctor_roster || '');\n\nconst specs = [];\n\nroster.split(';').forEach(pair => {\n  const bits = pair.split('|');\n\n  if (bits.length === 2) {\n    specs.push(bits[1].trim());\n  }\n});\n\nconst phone = String(intake.patient_phone || '')\n  .replace(/[^0-9]/g, '')\n  .slice(-10);\n\nconst hist = $('Read Patient History')\n  .all()\n  .map(i => i.json)\n  .filter(r => r && (r.record_id || r.patient_phone));\n\nconst mine = hist.filter(r =>\n  String(r.patient_phone || '')\n    .replace(/[^0-9]/g, '')\n    .slice(-10) === phone &&\n  phone.length === 10\n);\n\nlet histText = 'No previous visit on record. Treat as a new patient.';\n\nif (mine.length) {\n  histText = '';\n\n  mine.forEach(r => {\n    histText +=\n      String(r.appointment_slot || r.received_at || '') +\n      ' | ' +\n      String(r.specialty || '') +\n      ' | ' +\n      String(r.symptoms || '') +\n      ' | seen by ' +\n      String(r.doctor || '') +\n      '\\n';\n  });\n}\n\nreturn [{\n  json: {\n    kb_text: kb,\n    history_text: histText,\n    visit_count: mine.length,\n    is_returning: mine.length > 0,\n    specialty_list: specs.join(', '),\n    patient_name: intake.patient_name,\n    message_text: intake.message_text\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        976,
+        -80
+      ],
+      "id": "84e0fbaa-94db-423c-b2f5-008a8d9d579c",
+      "name": "Assemble Context"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json;\nconst body = raw.body || raw;\n\nconst pick = (a, b, c) => String(a || b || c || '').trim();\n\nconst name = pick(body.patient_name, body.name, body.from_name);\nconst phone = pick(body.patient_phone, body.phone, body.from);\nconst email = pick(body.patient_email, body.email, '');\nconst text = pick(body.message_text, body.message, body.text);\nconst channel = pick(body.channel, 'whatsapp', 'whatsapp');\n\nconst issues = [];\n\nif (!text) {\n  issues.push('Empty patient message');\n}\n\nif (!phone) {\n  issues.push('No patient phone captured');\n}\n\nif (!name) {\n  issues.push('No patient name captured');\n}\n\nif (!email) {\n  issues.push('No patient email captured, reply could not be delivered by email');\n}\n\nreturn [{\n  json: {\n    patient_name: name || 'Unknown Patient',\n    patient_phone: phone,\n    patient_email: email,\n    message_text: text,\n    channel: channel,\n    intake_issues: issues,\n    intake_issue_count: issues.length\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        336,
+        -80
+      ],
+      "id": "5279a9ac-f59c-44b9-9b2b-ca8d80bb2b2f",
+      "name": "Normalise Intake"
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "You are a clinic front desk triage assistant in India.\n\nYou do NOT diagnose and you do NOT suggest any medicine. You only classify, extract and route. Safety first: if there is any sign of a medical emergency, mark it emergency.\n\nYour response MUST be valid JSON only. Do not use markdown fences, explanations, or any text outside the JSON object.\n\nReturn exactly these keys:\n- intent\n- urgency\n- specialty\n- red_flags\n- symptoms\n- duration\n- age_hint\n- language\n- summary\n- kb_answer\n- key_questions\n\nRules:\n\n1. intent must be exactly one of:\n   - new_appointment\n   - reschedule\n   - cancel\n   - medical_query\n   - report_review\n   - billing\n   - other\n\n2. urgency must be exactly one of:\n   - emergency\n   - urgent\n   - routine\n\n3. Mark urgency as \"emergency\" for:\n   - chest pain\n   - breathlessness\n   - stroke signs\n   - severe bleeding\n   - unconsciousness\n   - severe injury\n   - suicidal talk\n   - high fever in an infant\n   - or any other life threatening sign\n\n4. Mark urgency as \"urgent\" for:\n   - severe pain\n   - high fever\n   - persistent vomiting\n   - or anything that should be seen the same day\n\n5. Otherwise mark urgency as \"routine\".\n\n6. specialty MUST be copied character for character from the AVAILABLE DEPARTMENTS list supplied in the user prompt.\n   - Return the department name ONLY.\n   - Do NOT return a doctor name.\n   - Do NOT include a pipe character.\n   - If unsure, return \"General Medicine\".\n\n7. red_flags must be an array of short clinical warning signs found in the patient message.\n   - Return [] if none are present.\n\n8. symptoms must be a short factual phrase describing what the patient reports.\n   - Do not interpret or diagnose.\n\n9. duration must state how long the problem has been occurring.\n   - Return \"unknown\" if it is not stated.\n\n10. age_hint must be exactly one of:\n   - child\n   - adult\n   - elderly\n   - unknown\n\n11. language must be exactly one of:\n   - english\n   - hindi\n   - hinglish\n\n12. summary must be one factual line for the doctor.\n\n13. kb_answer must contain a direct answer from the clinic knowledge base if the patient asked an administrative/clinic question.\n   - Otherwise return an empty string.\n\n14. key_questions must contain exactly 3 short questions that the doctor should ask this patient at the visit.\n\n15. Do not diagnose the patient.\n16. Do not recommend medicines.\n17. Do not invent information that is not present in the patient message, patient history, or clinic knowledge base.\n18. Do not use em-dashes anywhere.\n19. Return JSON only."
+            },
+            {
+              "content": "=PATIENT MESSAGE:\n{{$json.message_text || \"\"}}\n\nPATIENT NAME GIVEN:\n{{$json.patient_name || \"unknown\"}}\n\nPREVIOUS VISITS:\n{{$json.history_text || \"none\"}}\n\nAVAILABLE DEPARTMENTS:\n{{$json.specialty_list || \"General Medicine\"}}\n\nCLINIC KNOWLEDGE BASE:\n{{$json.kb_text || \"\"}}\n\nReturn ONLY valid JSON.\n\nThe JSON must have exactly these keys:\nintent, urgency, specialty, red_flags, symptoms, duration, age_hint, language, summary, kb_answer, key_questions\n\nintent must be one of:\nnew_appointment, reschedule, cancel, medical_query, report_review, billing, other\n\nurgency must be one of:\nemergency, urgent, routine\n\nspecialty MUST be copied character for character from the AVAILABLE DEPARTMENTS list above.\n\nDo NOT return a doctor name as specialty.\nDo NOT include a pipe character in specialty.\n\nred_flags must be an array.\nsymptoms must be a short factual phrase.\nduration must be how long the issue has been occurring, or \"unknown\".\nage_hint must be child, adult, elderly, or unknown.\nlanguage must be english, hindi, or hinglish.\nsummary must be one factual line for the doctor.\nkb_answer must answer an administrative question using only the clinic knowledge base, otherwise return an empty string.\nkey_questions must be an array containing exactly 3 short questions.\n\nSafety rule:\nMark urgency as \"emergency\" for chest pain, breathlessness, stroke signs, severe bleeding, unconsciousness, severe injury, suicidal talk, high fever in an infant, or any life threatening sign.\n\nMark urgency as \"urgent\" for severe pain, high fever, persistent vomiting, or anything that should be seen the same day.\n\nOtherwise mark urgency as \"routine\".\n\nDo not diagnose.\nDo not suggest medicines.\nDo not invent information.\nReturn JSON only."
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        1136,
+        -80
+      ],
+      "id": "853f377b-e70a-43c2-b42c-dc9d2b393857",
+      "name": "Triage Agent",
+      "credentials": {
+        "openAiApi": {
+          "id": "rVMPcNWmxsYPgcr4",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const t = $input.first().json;\nconst cfg = $('Config').first().json;\nconst intake = $('Normalise Intake').first().json;\nconst ctx = $('Assemble Context').first().json;\nconst hist = $('Read Patient History').all().map(i => i.json).filter(r => r && r.record_id);\n\nconst issues = [];\n\nconst allowedUrgency = ['emergency', 'urgent', 'routine'];\nconst allowedIntent = ['new_appointment', 'reschedule', 'cancel', 'medical_query', 'report_review', 'billing', 'other'];\n\nlet urgency = String(t.urgency || 'routine').trim().toLowerCase();\nif (!allowedUrgency.includes(urgency)) {\n  urgency = 'routine';\n  issues.push('Invalid urgency from AI, defaulted to routine');\n}\n\nlet intent = String(t.intent || 'other').trim().toLowerCase();\nif (!allowedIntent.includes(intent)) {\n  intent = 'other';\n  issues.push('Invalid intent from AI, defaulted to other');\n}\n\nlet specialty = String(t.specialty || 'General Medicine').trim();\nconst roster = String(cfg.doctor_roster || '');\n\nconst doctors = {};\nroster.split(';').forEach(pair => {\n  const bits = pair.split('|');\n  if (bits.length === 2) {\n    doctors[bits[1].trim()] = bits[0].trim();\n  }\n});\n\nif (!doctors[specialty]) {\n  specialty = 'General Medicine';\n  issues.push('Specialty not found in doctor roster, defaulted to General Medicine');\n}\n\nconst doctor = doctors[specialty] || 'General Medicine';\n\nconst now = new Date();\nconst openHour = Number(cfg.open_hour) || 10;\nconst closeHour = Number(cfg.close_hour) || 19;\nconst slotMinutes = Number(cfg.slot_minutes) || 20;\n\nfunction fmtSlot(d) {\n  const pad = n => String(n).padStart(2, '0');\n  return `${d.getFullYear()}-${pad(d.getMonth() + 1)}-${pad(d.getDate())} ${pad(d.getHours())}:${pad(d.getMinutes())}`;\n}\n\nfunction nextOpen(d) {\n  const x = new Date(d);\n  if (x.getHours() < openHour) {\n    x.setHours(openHour, 0, 0, 0);\n  } else if (x.getHours() >= closeHour) {\n    x.setDate(x.getDate() + 1);\n    x.setHours(openHour, 0, 0, 0);\n  }\n  return x;\n}\n\nfunction roundToSlot(d) {\n  const x = new Date(d);\n  const mins = x.getMinutes();\n  const rounded = Math.ceil(mins / slotMinutes) * slotMinutes;\n  x.setMinutes(rounded, 0, 0);\n\n  if (x.getHours() >= closeHour) {\n    x.setDate(x.getDate() + 1);\n    x.setHours(openHour, 0, 0, 0);\n  }\n\n  return x;\n}\n\nlet slot;\nlet slotText;\nlet apptDate;\n\nif (urgency === 'emergency') {\n  slot = now;\n  slotText = 'Immediate attention required';\n  apptDate = fmtSlot(now).split(' ')[0];\n} else if (urgency === 'urgent') {\n  slot = new Date(now.getTime() + 2 * 60 * 60 * 1000);\n  slot = nextOpen(slot);\n  slot = roundToSlot(slot);\n  slotText = fmtSlot(slot);\n  apptDate = fmtSlot(slot).split(' ')[0];\n} else {\n  slot = new Date(now);\n  slot.setDate(slot.getDate() + 1);\n  slot.setHours(openHour, 0, 0, 0);\n  slot = roundToSlot(slot);\n  slotText = fmtSlot(slot);\n  apptDate = fmtSlot(slot).split(' ')[0];\n}\n\nconst stamp = now.toISOString().replace(/[-:.TZ]/g, '').slice(0, 14);\n\nconst phoneKey = String(intake.patient_phone || '')\n  .replace(/[^0-9]/g, '')\n  .slice(-10);\n\nconst dedupeMin = Number(cfg.dedupe_minutes) || 30;\nconst nowMs = now.getTime();\n\nlet isDuplicate = false;\n\nhist.forEach(r => {\n  const rp = String(r.patient_phone || '')\n    .replace(/[^0-9]/g, '')\n    .slice(-10);\n\n  if (rp && rp === phoneKey) {\n    const ts = Date.parse(\n      String(r.received_at || '').trim().replace(' ', 'T') + 'Z'\n    );\n\n    if (\n      !isNaN(ts) &&\n      (nowMs - ts) < dedupeMin * 60000 &&\n      (nowMs - ts) > -60000\n    ) {\n      isDuplicate = true;\n    }\n  }\n});\n\nlet redFlags = Array.isArray(t.red_flags) ? t.red_flags : [];\nlet keyQ = Array.isArray(t.key_questions) ? t.key_questions : [];\n\nlet flagText = 'none';\n\nif (redFlags.length) {\n  flagText = redFlags.join('; ');\n}\n\nlet qText = '';\n\nkeyQ.forEach(q => {\n  qText += '- ' + String(q) + '\\n';\n});\n\nconst aiOk =\n  !!t.intent &&\n  !!t.urgency &&\n  !!t.specialty;\n\nreturn [{\n  json: {\n    record_id: 'PR' + stamp,\n    appointment_id: 'AP' + stamp,\n    received_at: fmtSlot(now),\n\n    channel: intake.channel,\n    patient_name: intake.patient_name,\n    patient_phone: intake.patient_phone,\n    patient_email: intake.patient_email,\n    message_text: intake.message_text,\n\n    intent: intent,\n    urgency: urgency,\n    is_emergency: urgency === 'emergency',\n\n    red_flags: redFlags,\n    red_flags_text: flagText,\n\n    symptoms: String(t.symptoms || 'Not clearly stated'),\n    duration: String(t.duration || 'unknown'),\n    age_hint: String(t.age_hint || 'unknown'),\n    language: String(t.language || 'english'),\n    summary: String(t.summary || 'Patient enquiry received'),\n\n    kb_answer: String(t.kb_answer || ''),\n\n    key_questions: keyQ,\n    key_questions_text:\n      qText ||\n      '- Confirm the exact onset and duration\\n- Ask about any existing medication\\n- Ask about known allergies\\n',\n\n    specialty: specialty,\n    doctor: doctor,\n\n    appointment_slot: slotText,\n    appointment_date: apptDate,\n\n    is_returning: !!ctx.is_returning,\n    visit_count: Number(ctx.visit_count) || 0,\n    history_text: ctx.history_text,\n\n    clinic_name: cfg.clinic_name,\n    clinic_phone: cfg.clinic_phone,\n    clinic_address: cfg.clinic_address,\n    doctor_email: cfg.doctor_email,\n\n    ai_ok: aiOk,\n    is_duplicate: isDuplicate,\n\n    data_issues: issues,\n    data_issue_count: issues.length,\n\n    status: urgency === 'emergency' ? 'escalated' : 'booked'\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1600,
+        -80
+      ],
+      "id": "33f022cc-99b0-4289-a192-fd9631f1b32b",
+      "name": "Slot & Route Engine"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "4e3d7eb0-48ba-400b-adb4-a4eb5eaf309e",
+              "leftValue": "={{ $json.is_emergency }}",
+              "rightValue": true,
+              "operator": {
+                "type": "boolean",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        1744,
+        -80
+      ],
+      "id": "97f8c9da-64db-4dec-9265-c392c931f286",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.doctor_email }}",
+        "subject": "=EMERGENCY TRIAGE - {{ $json.patient_name }} - {{ $json.symptoms }}",
+        "message": "=<div style=\"font-family:Calibri,Arial,sans-serif;background:#F4F5F0;padding:22px;\">\n\n  <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:600px;margin:0 auto;background:#FFFFFF;border-radius:10px;overflow:hidden;\">\n\n    <tr>\n      <td style=\"background:#0F2A3D;padding:22px 26px;\">\n        <div style=\"color:#7FD1CE;font-size:11px;font-weight:bold;letter-spacing:3px;\">\n          EMERGENCY TRIAGE ALERT\n        </div>\n\n        <div style=\"color:#FFFFFF;font-family:Georgia,serif;font-size:22px;font-weight:bold;margin-top:6px;\">\n          {{ $json.patient_name }}\n        </div>\n\n        <div style=\"font-size:13px;color:#9AB2C0;margin-top:4px;\">\n          {{ $json.patient_phone }} &middot; {{ $json.received_at }} &middot; via {{ $json.channel }}\n        </div>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"background:#C0392B;padding:12px 26px;\">\n        <div style=\"color:#FFFFFF;font-size:13px;font-weight:bold;letter-spacing:1px;\">\n          URGENT - PLEASE READ IMMEDIATELY\n        </div>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:20px 26px 16px 26px;\">\n        <div style=\"background:#FBE9E7;border-left:4px solid #C0392B;border-radius:6px;padding:14px 16px;\">\n\n          <div style=\"font-size:12px;font-weight:bold;color:#C0392B;letter-spacing:1px;\">\n            RED FLAGS\n          </div>\n\n          <div style=\"font-size:15px;color:#7A1F14;font-weight:bold;margin-top:6px;\">\n            {{ $json.red_flags_text }}\n          </div>\n\n        </div>\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:0 26px 16px 26px;\">\n\n        <div style=\"font-size:12px;font-weight:bold;color:#666666;letter-spacing:1px;\">\n          WHAT THE PATIENT SAID\n        </div>\n\n        <div style=\"font-size:14px;color:#1A1A1A;line-height:1.55;margin-top:6px;font-style:italic;\">\n          {{ $json.message_text }}\n        </div>\n\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"padding:0 26px 22px 26px;\">\n\n        <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:1px solid #E4E4DC;border-radius:8px;border-left:4px solid #0E7C7B;\">\n\n          <tr>\n            <td style=\"padding:12px 14px;font-size:13px;color:#666666;\">\n              Routed to\n            </td>\n\n            <td align=\"right\" style=\"padding:12px 14px;font-size:14px;font-weight:bold;color:#0E7C7B;\">\n              {{ $json.doctor }} &middot; {{ $json.specialty }}\n            </td>\n          </tr>\n\n          <tr>\n            <td style=\"padding:12px 14px;font-size:13px;color:#666666;border-top:1px solid #E4E4DC;\">\n              Action\n            </td>\n\n            <td align=\"right\" style=\"padding:12px 14px;font-size:14px;font-weight:bold;color:#C0392B;border-top:1px solid #E4E4DC;\">\n              {{ $json.appointment_slot }}\n            </td>\n          </tr>\n\n        </table>\n\n        <div style=\"font-size:12px;color:#666666;margin-top:14px;\">\n          Call the patient back immediately. This alert was raised automatically and is not a diagnosis.\n        </div>\n\n      </td>\n    </tr>\n\n    <tr>\n      <td style=\"background:#0F2A3D;padding:12px 26px;\">\n        <div style=\"color:#9AB2C0;font-size:11px;\">\n          {{ $json.clinic_name }} &middot; Patient Journey Agent &middot; Powered by Haus of Intelligence\n        </div>\n      </td>\n    </tr>\n\n  </table>\n\n</div>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        1920,
+        -160
+      ],
+      "id": "08b2e1d5-b757-4257-ba39-6f78bee1906b",
+      "name": "Alert Clinic",
+      "webhookId": "7ae897c1-dc87-4328-84a2-82c1d10ff59d",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "qN5tAk1JWrkqoA7y",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=You are the front desk of {{ $json.clinic_name || \"the clinic\" }} replying to a patient on WhatsApp. Be warm, short and respectful. You must NOT diagnose, must NOT name any illness and must NOT suggest any medicine.\n\nPATIENT NAME: {{ $json.patient_name || \"\" }}\nWHAT THEY WROTE: {{ $json.message_text || \"\" }}\nLANGUAGE TO REPLY IN: {{ $json.language || \"english\" }}\nURGENCY: {{ $json.urgency || \"routine\" }}\nDOCTOR ASSIGNED: {{ $json.doctor || \"\" }} ({{ $json.specialty || \"\" }})\nAPPOINTMENT: {{ $json.appointment_slot || \"\" }}\nCLINIC PHONE: {{ $json.clinic_phone || \"\" }}\nCLINIC ADDRESS: {{ $json.clinic_address || \"\" }}\nADMIN ANSWER IF ANY: {{ $json.kb_answer || \"none\" }}\n\nReturn ONLY valid JSON, no markdown fences.\n\nKeys:\ngreeting_line,\nbody_lines,\nprep_lines,\nclosing_line.\n\ngreeting_line is one warm line addressing the patient by name.\n\nbody_lines is an array of 2 to 4 short lines confirming what happens next, naming the doctor and the appointment time.\n\nIf URGENCY is emergency, the FIRST body line must clearly tell them to come to the clinic immediately or call the clinic number now, and to go to the nearest emergency room if the person becomes worse. Do not soften it and do not name any condition.\n\nprep_lines is an array of 2 or 3 short practical things to bring or do before the visit, such as previous reports, a list of current medicines, and coming 10 minutes early.\n\nclosing_line is one short reassuring line.\n\nIf LANGUAGE is hinglish, write naturally in Roman Hindi mixed with English the way Indian patients message.\n\nIf LANGUAGE is hindi, reply in simple Hindi written in Roman script.\n\nOtherwise use plain Indian English.\n\nNo em-dashes anywhere.\n\nOUTPUT FORMAT EXAMPLE:\nThe following is only an example of the required JSON structure. The patient name, doctor, appointment time, and other values shown are illustrative. Do not copy these example values unless they match the actual patient data provided above.\n\n{\n  \"greeting_line\": \"Hello Rahul,\",\n  \"body_lines\": [\n    \"Your appointment has been scheduled with Dr Anil Menon.\",\n    \"Your appointment time is 5:40 PM.\"\n  ],\n  \"prep_lines\": [\n    \"Please bring any previous medical reports.\",\n    \"Please arrive 10 minutes before your appointment.\"\n  ],\n  \"closing_line\": \"We look forward to seeing you.\"\n}"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        1920,
+        0
+      ],
+      "id": "c4481748-9a5b-4f85-89fd-597105a10778",
+      "name": "Patient Reply Composer",
+      "credentials": {
+        "openAiApi": {
+          "id": "rVMPcNWmxsYPgcr4",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const esc = (s) => String(s == null ? '' : s)\n  .replace(/&/g, '&amp;')\n  .replace(/</g, '&lt;')\n  .replace(/>/g, '&gt;');\n\nconst d = $('Slot & Route Engine').first().json;\nconst r = $input.first().json;\n\nconst replyOk = !!r.greeting_line;\n\nconst greeting = r.greeting_line || ('Namaste ' + d.patient_name + ',');\n\nconst bodyLines =\n  Array.isArray(r.body_lines) && r.body_lines.length\n    ? r.body_lines\n    : ['We have received your message and our team will contact you shortly.'];\n\nconst prepLines = Array.isArray(r.prep_lines) ? r.prep_lines : [];\n\nconst closing = r.closing_line || 'Thank you.';\n\nconst SLATE = '#0F2A3D';\nconst TEAL = '#0E7C7B';\nconst CREAM = '#F4F5F0';\nconst WHITE = '#FFFFFF';\nconst INK = '#1A1A1A';\nconst GREY = '#666666';\nconst RED = '#C0392B';\nconst AMBER = '#E67E22';\n\nconst isEmg = d.urgency === 'emergency';\nconst accent = isEmg\n  ? RED\n  : (d.urgency === 'urgent' ? AMBER : TEAL);\n\nlet bodyHtml = '';\n\nbodyLines.forEach(l => {\n  bodyHtml +=\n    '<div style=\"font-size:15px;color:' + INK +\n    ';line-height:1.6;margin-bottom:9px;\">' +\n    esc(l) +\n    '</div>';\n});\n\nlet prepHtml = '';\n\nprepLines.forEach(l => {\n  prepHtml +=\n    '<li style=\"margin-bottom:6px;\">' +\n    esc(l) +\n    '</li>';\n});\n\nlet plain = greeting + '\\n\\n';\n\nbodyLines.forEach(l => {\n  plain += l + '\\n';\n});\n\nif (prepLines.length) {\n  plain += '\\nPlease bring:\\n';\n\n  prepLines.forEach(l => {\n    plain += '- ' + l + '\\n';\n  });\n}\n\nplain += '\\n' + closing;\n\nconst banner = isEmg\n  ? (\n    '<tr><td style=\"background:' + RED + ';padding:12px 26px;\">' +\n    '<div style=\"color:#FFFFFF;font-size:13px;font-weight:bold;letter-spacing:1px;\">' +\n    'URGENT - PLEASE READ IMMEDIATELY' +\n    '</div></td></tr>'\n  )\n  : '';\n\nconst html = '' +\n'<div style=\"background:' + CREAM + ';padding:22px;font-family:Calibri,Arial,sans-serif;\">' +\n\n'<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:600px;margin:0 auto;background:' + WHITE + ';border-radius:10px;overflow:hidden;\">' +\n\n'<tr><td style=\"background:' + SLATE + ';padding:22px 26px;\">' +\n'<div style=\"color:#7FD1CE;font-size:11px;font-weight:bold;letter-spacing:3px;\">APPOINTMENT UPDATE</div>' +\n'<div style=\"color:' + WHITE + ';font-family:Georgia,serif;font-size:22px;font-weight:bold;margin-top:6px;\">' +\nesc(d.clinic_name) +\n'</div>' +\n'</td></tr>' +\n\nbanner +\n\n'<tr><td style=\"padding:22px 26px 6px 26px;\">' +\n'<div style=\"font-size:16px;font-weight:bold;color:' + INK + ';margin-bottom:12px;\">' +\nesc(greeting) +\n'</div>' +\nbodyHtml +\n'</td></tr>' +\n\n'<tr><td style=\"padding:8px 26px;\">' +\n\n'<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"border:1px solid #E4E4DC;border-radius:8px;border-left:4px solid ' + accent + ';\">' +\n\n'<tr>' +\n'<td style=\"padding:12px 14px;font-size:12px;color:' + GREY + ';\">Doctor</td>' +\n'<td align=\"right\" style=\"padding:12px 14px;font-size:14px;font-weight:bold;color:' + SLATE + ';\">' +\nesc(d.doctor) +\n'</td>' +\n'</tr>' +\n\n'<tr>' +\n'<td style=\"padding:12px 14px;font-size:12px;color:' + GREY + ';border-top:1px solid #E4E4DC;\">Department</td>' +\n'<td align=\"right\" style=\"padding:12px 14px;font-size:14px;color:' + SLATE + ';border-top:1px solid #E4E4DC;\">' +\nesc(d.specialty) +\n'</td>' +\n'</tr>' +\n\n'<tr>' +\n'<td style=\"padding:12px 14px;font-size:12px;color:' + GREY + ';border-top:1px solid #E4E4DC;\">Appointment</td>' +\n'<td align=\"right\" style=\"padding:12px 14px;font-size:14px;font-weight:bold;color:' + accent + ';border-top:1px solid #E4E4DC;\">' +\nesc(d.appointment_slot) +\n'</td>' +\n'</tr>' +\n\n'<tr>' +\n'<td style=\"padding:12px 14px;font-size:12px;color:' + GREY + ';border-top:1px solid #E4E4DC;\">Reference</td>' +\n'<td align=\"right\" style=\"padding:12px 14px;font-size:13px;color:' + GREY + ';border-top:1px solid #E4E4DC;\">' +\nesc(d.appointment_id) +\n'</td>' +\n'</tr>' +\n\n'</table>' +\n'</td></tr>' +\n\n(\n  prepHtml\n    ? (\n      '<tr><td style=\"padding:16px 26px 4px 26px;\">' +\n      '<div style=\"font-size:13px;font-weight:bold;color:' + SLATE + ';margin-bottom:6px;\">Please bring with you</div>' +\n      '<ul style=\"font-size:14px;color:' + INK + ';line-height:1.5;margin:0;padding-left:20px;\">' +\n      prepHtml +\n      '</ul>' +\n      '</td></tr>'\n    )\n    : ''\n) +\n\n'<tr><td style=\"padding:16px 26px 20px 26px;\">' +\n'<div style=\"font-size:14px;color:' + INK + ';\">' +\nesc(closing) +\n'</div>' +\n\n'<div style=\"font-size:13px;color:' + GREY + ';margin-top:12px;\">' +\nesc(d.clinic_address) +\n'<br>Call us: ' +\nesc(d.clinic_phone) +\n'</div>' +\n\n'</td></tr>' +\n\n'<tr><td style=\"background:' + CREAM + ';padding:12px 26px;\">' +\n'<div style=\"font-size:11px;color:' + GREY + ';line-height:1.45;\">' +\n'This message is an appointment confirmation only. It is not medical advice or a diagnosis. In an emergency please call ' +\nesc(d.clinic_phone) +\n' or go to the nearest emergency room.' +\n'</div>' +\n'</td></tr>' +\n\n'</table>' +\n'</div>';\n\nreturn [\n  {\n    json: {\n      patient_reply_html: html,\n      patient_reply_text: plain,\n      reply_ok: replyOk\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2384,
+        0
+      ],
+      "id": "4767ff47-ecc5-4e5e-99b6-88b566ed1922",
+      "name": "Build Patient Reply"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Slot & Route Engine').item.json.patient_email }}",
+        "subject": "={{ $(\"Slot & Route Engine\").first().json.clinic_name }} - your appointment {{ $(\"Slot & Route Engine\").first().json.appointment_id }}",
+        "message": "=={{ $json.patient_reply_html }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        2544,
+        0
+      ],
+      "id": "f825cb2d-381e-4fad-bc32-963707d2d42a",
+      "name": "Send Patient Reply",
+      "webhookId": "4e63ce40-f19f-400e-8f99-d5d03b45ea0c",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "qN5tAk1JWrkqoA7y",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gpt-4.1-mini",
+          "mode": "list",
+          "cachedResultName": "GPT-4.1-MINI"
+        },
+        "responses": {
+          "values": [
+            {
+              "role": "system",
+              "content": "=You are a clinical scribe preparing a one page pre consultation brief for a doctor in India.\n\nYou do NOT diagnose and you do NOT suggest treatment or medicine.\n\nYou only organise what the patient reported so the doctor can read it in 20 seconds.\n\nPATIENT: {{ $(\"Slot & Route Engine\").first().json.patient_name || \"\" }}\n\nAGE GROUP: {{ $(\"Slot & Route Engine\").first().json.age_hint || \"unknown\" }}\n\nWHAT THEY WROTE: {{ $(\"Slot & Route Engine\").first().json.message_text || \"\" }}\n\nREPORTED SYMPTOMS: {{ $(\"Slot & Route Engine\").first().json.symptoms || \"\" }}\n\nDURATION: {{ $(\"Slot & Route Engine\").first().json.duration || \"unknown\" }}\n\nRED FLAGS FOUND: {{ $(\"Slot & Route Engine\").first().json.red_flags_text || \"none\" }}\n\nURGENCY: {{ $(\"Slot & Route Engine\").first().json.urgency || \"\" }}\n\nDEPARTMENT: {{ $(\"Slot & Route Engine\").first().json.specialty || \"\" }}\n\nPREVIOUS VISITS:\n{{ $(\"Slot & Route Engine\").first().json.history_text || \"none\" }}\n\nReturn ONLY valid JSON, no markdown fences.\n\nKeys:\nchief_complaint,\nhistory_note,\nobservations,\nquestions_to_ask,\nprep_note,\ncaution_note.\n\nchief_complaint is one clinical line stating what the patient reports, factual only.\n\nhistory_note is one or two lines connecting this to any previous visit, or says first recorded visit.\n\nobservations is an array of 3 short factual bullets drawn only from what the patient said, no interpretation and no diagnosis.\n\nquestions_to_ask is an array of exactly 4 specific questions the doctor should ask at the visit.\n\nprep_note is one line on what the front desk should keep ready, for example previous reports, vitals, or a specific test the doctor may want.\n\ncaution_note is one line reminding that this is an automated intake summary and not a clinical assessment.\n\nNo em-dashes anywhere."
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {
+          "temperature": 0.3
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.openAi",
+      "typeVersion": 2.3,
+      "position": [
+        2704,
+        0
+      ],
+      "id": "9da85538-d07b-4fc7-a2aa-b8cbdf56c4e6",
+      "name": "Doctor Brief Writer",
+      "credentials": {
+        "openAiApi": {
+          "id": "rVMPcNWmxsYPgcr4",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $input.first().json.output[0].content[0].text;\n\nif (!text) {\n  throw new Error('No triage JSON found in ChatGPT output');\n}\n\nlet triage;\n\ntry {\n  triage = JSON.parse(text);\n} catch (error) {\n  throw new Error('ChatGPT returned invalid JSON: ' + error.message);\n}\n\n// Return the normalized JSON object\nreturn [\n  {\n    json: {\n      intent: triage.intent || \"other\",\n      urgency: triage.urgency || \"routine\",\n      specialty: triage.specialty || \"General Medicine\",\n      red_flags: Array.isArray(triage.red_flags) ? triage.red_flags : [],\n      symptoms: triage.symptoms || \"\",\n      duration: triage.duration || \"unknown\",\n      age_hint: triage.age_hint || \"unknown\",\n      language: triage.language || \"english\",\n      summary: triage.summary || \"\",\n      kb_answer: triage.kb_answer || \"\",\n      key_questions: Array.isArray(triage.key_questions)\n        ? triage.key_questions\n        : []\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1424,
+        -80
+      ],
+      "id": "72d86d0c-332b-4998-a69d-3465678549e7",
+      "name": "Normalise Triage Output"
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $input.first().json.output[0].content[0].text;\n\nif (!text) {\n  throw new Error('No patient reply JSON found in ChatGPT output');\n}\n\nlet reply;\n\ntry {\n  reply = JSON.parse(text);\n} catch (error) {\n  throw new Error('ChatGPT returned invalid JSON: ' + error.message);\n}\n\n// Return the normalized JSON object\nreturn [\n  {\n    json: {\n      greeting_line: reply.greeting_line || '',\n      body_lines: Array.isArray(reply.body_lines)\n        ? reply.body_lines\n        : [],\n      prep_lines: Array.isArray(reply.prep_lines)\n        ? reply.prep_lines\n        : [],\n      closing_line: reply.closing_line || ''\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2208,
+        0
+      ],
+      "id": "86ddef5d-c47a-4d49-bf8e-fb3c02b82c60",
+      "name": "Normalise Reply Output"
+    },
+    {
+      "parameters": {
+        "jsCode": "const text = $input.first().json.output[0].content[0].text;\n\nif (!text) {\n  throw new Error('No doctor brief JSON found in ChatGPT output');\n}\n\nlet brief;\n\ntry {\n  brief = JSON.parse(text);\n} catch (error) {\n  throw new Error('ChatGPT returned invalid JSON: ' + error.message);\n}\n\n// Return the normalized JSON object\nreturn [\n  {\n    json: {\n      chief_complaint: brief.chief_complaint || '',\n      history_note: brief.history_note || '',\n      observations: Array.isArray(brief.observations)\n        ? brief.observations\n        : [],\n      questions_to_ask: Array.isArray(brief.questions_to_ask)\n        ? brief.questions_to_ask\n        : [],\n      prep_note: brief.prep_note || '',\n      caution_note: brief.caution_note || ''\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2992,
+        0
+      ],
+      "id": "78cbd8c7-7805-486c-aaf6-996d5010077b",
+      "name": "Normalise Brief Output"
+    },
+    {
+      "parameters": {
+        "jsCode": "const esc = (s) => String(s == null ? '' : s)\n  .replace(/&/g, '&amp;')\n  .replace(/</g, '&lt;')\n  .replace(/>/g, '&gt;');\n\nconst d = $('Slot & Route Engine').first().json;\nconst b = $input.first().json;\n\nconst briefOk = !!b.chief_complaint;\nconst replyOk = !!($('Build Patient Reply').first().json.reply_ok);\n\nconst chief =\n  b.chief_complaint ||\n  d.symptoms ||\n  'Patient enquiry received';\n\nconst histNote =\n  b.history_note ||\n  (\n    d.is_returning\n      ? ('Returning patient with ' + d.visit_count + ' previous visit(s) on record.')\n      : 'First recorded visit.'\n  );\n\nconst obs =\n  Array.isArray(b.observations)\n    ? b.observations\n    : [];\n\nconst qs =\n  Array.isArray(b.questions_to_ask) && b.questions_to_ask.length\n    ? b.questions_to_ask\n    : (\n        Array.isArray(d.key_questions)\n          ? d.key_questions\n          : []\n      );\n\nconst prep =\n  b.prep_note ||\n  'Keep previous reports and vitals ready.';\n\nconst caution =\n  b.caution_note ||\n  'This is an automated intake summary and not a clinical assessment.';\n\nconst SLATE = '#0F2A3D';\nconst TEAL = '#0E7C7B';\nconst CREAM = '#F4F5F0';\nconst WHITE = '#FFFFFF';\nconst INK = '#1A1A1A';\nconst GREY = '#666666';\nconst RED = '#C0392B';\nconst AMBER = '#E67E22';\n\nconst uc =\n  d.urgency === 'emergency'\n    ? RED\n    : (\n        d.urgency === 'urgent'\n          ? AMBER\n          : TEAL\n      );\n\nconst ucLabel =\n  String(d.urgency || 'routine').toUpperCase();\n\nconst issues =\n  Array.isArray(d.data_issues)\n    ? d.data_issues.slice(0)\n    : [];\n\nif (!briefOk) {\n  issues.push(\n    'Brief AI was unavailable, showing captured intake data only'\n  );\n}\n\nif (!replyOk) {\n  issues.push(\n    'Patient reply AI was unavailable, a fallback reply was sent'\n  );\n}\n\nif (d.is_duplicate) {\n  issues.push(\n    'Possible duplicate message from the same number within the dedupe window'\n  );\n}\n\nlet bannerHtml = '';\n\nif (issues.length) {\n  bannerHtml =\n    '<tr><td style=\"padding:12px 26px 0 26px;\">' +\n      '<div style=\"background:#FBE9E7;border-left:4px solid ' +\n      RED +\n      ';border-radius:6px;padding:11px 13px;font-size:12.5px;color:#7A1F14;\">' +\n        '<strong>Heads up.</strong> ' +\n        esc(issues.slice(0, 3).join('; ')) +\n      '</div>' +\n    '</td></tr>';\n}\n\nlet obsHtml = '';\n\nobs.forEach(o => {\n  obsHtml +=\n    '<li style=\"margin-bottom:6px;\">' +\n    esc(o) +\n    '</li>';\n});\n\nlet qHtml = '';\n\nqs.forEach(q => {\n  qHtml +=\n    '<li style=\"margin-bottom:7px;\">' +\n    esc(q) +\n    '</li>';\n});\n\nconst flagsBlock =\n  (\n    d.red_flags_text &&\n    d.red_flags_text !== 'none'\n  )\n    ? (\n        '<tr><td style=\"padding:14px 26px 0 26px;\">' +\n          '<div style=\"background:#FBE9E7;border-left:4px solid ' +\n          RED +\n          ';border-radius:6px;padding:13px 15px;\">' +\n\n            '<div style=\"font-size:11px;font-weight:bold;color:#7A1F14;letter-spacing:1px;\">' +\n              'RED FLAGS' +\n            '</div>' +\n\n            '<div style=\"font-size:14.5px;color:#7A1F14;font-weight:bold;margin-top:5px;\">' +\n              esc(d.red_flags_text) +\n            '</div>' +\n\n          '</div>' +\n        '</td></tr>'\n      )\n    : '';\n\nconst html = '' +\n\n'<div style=\"background:' +\nCREAM +\n';padding:22px;font-family:Calibri,Arial,sans-serif;\">' +\n\n'<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width:640px;margin:0 auto;background:' +\nWHITE +\n';border-radius:10px;overflow:hidden;\">' +\n\n'<tr><td style=\"background:' +\nSLATE +\n';padding:22px 26px;\">' +\n\n'<div style=\"color:#7FD1CE;font-size:11px;font-weight:bold;letter-spacing:3px;\">' +\n'PRE CONSULTATION BRIEF' +\n'</div>' +\n\n'<div style=\"color:' +\nWHITE +\n';font-family:Georgia,serif;font-size:25px;font-weight:bold;margin-top:7px;\">' +\nesc(d.patient_name) +\n'</div>' +\n\n'<div style=\"color:#9AB2C0;font-size:13px;margin-top:5px;\">' +\nesc(d.patient_phone) +\n' &middot; ' +\nesc(d.age_hint) +\n' &middot; via ' +\nesc(d.channel) +\n' &middot; ' +\nesc(d.received_at) +\n' IST' +\n'</div>' +\n\n'</td></tr>' +\n\nbannerHtml +\n\n'<tr><td style=\"padding:16px 26px 4px 26px;\">' +\n\n'<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">' +\n\n'<tr>' +\n\n'<td align=\"center\" style=\"background:' +\nuc +\n';border-radius:6px;padding:12px 6px;\">' +\n\n'<div style=\"color:#FFFFFF;font-size:15px;font-weight:bold;\">' +\nucLabel +\n'</div>' +\n\n'<div style=\"color:#F0F0F0;font-size:10.5px;\">' +\n'triage' +\n'</div>' +\n\n'</td>' +\n\n'<td width=\"8\"></td>' +\n\n'<td align=\"center\" style=\"background:' +\nCREAM +\n';border-radius:6px;padding:12px 6px;\">' +\n\n'<div style=\"color:' +\nSLATE +\n';font-size:14px;font-weight:bold;\">' +\nesc(d.specialty) +\n'</div>' +\n\n'<div style=\"color:' +\nGREY +\n';font-size:10.5px;\">' +\n'department' +\n'</div>' +\n\n'</td>' +\n\n'<td width=\"8\"></td>' +\n\n'<td align=\"center\" style=\"background:' +\nCREAM +\n';border-radius:6px;padding:12px 6px;\">' +\n\n'<div style=\"color:' +\nSLATE +\n';font-size:14px;font-weight:bold;\">' +\nesc(d.doctor) +\n'</div>' +\n\n'<div style=\"color:' +\nGREY +\n';font-size:10.5px;\">' +\n'assigned' +\n'</div>' +\n\n'</td>' +\n\n'<td width=\"8\"></td>' +\n\n'<td align=\"center\" style=\"background:' +\nCREAM +\n';border-radius:6px;padding:12px 6px;\">' +\n\n'<div style=\"color:' +\nSLATE +\n';font-size:13px;font-weight:bold;\">' +\nesc(d.visit_count) +\n'</div>' +\n\n'<div style=\"color:' +\nGREY +\n';font-size:10.5px;\">' +\n'past visits' +\n'</div>' +\n\n'</td>' +\n\n'</tr>' +\n\n'</table>' +\n\n'</td></tr>' +\n\nflagsBlock +\n\n'<tr><td style=\"padding:16px 26px 4px 26px;\">' +\n\n'<div style=\"font-family:Georgia,serif;font-size:15px;font-weight:bold;color:' +\nSLATE +\n';\">' +\n'Chief complaint' +\n'</div>' +\n\n'<div style=\"font-size:15px;color:' +\nINK +\n';line-height:1.55;margin-top:5px;\">' +\nesc(chief) +\n'</div>' +\n\n'<div style=\"font-size:13px;color:' +\nGREY +\n';margin-top:7px;\">' +\n'Duration: ' +\nesc(d.duration) +\n'</div>' +\n\n'</td></tr>' +\n\n'<tr><td style=\"padding:14px 26px 4px 26px;\">' +\n\n'<div style=\"font-family:Georgia,serif;font-size:15px;font-weight:bold;color:' +\nSLATE +\n';\">' +\n'History' +\n'</div>' +\n\n'<div style=\"font-size:14px;color:' +\nINK +\n';line-height:1.55;margin-top:5px;\">' +\nesc(histNote) +\n'</div>' +\n\n'</td></tr>' +\n\n(\n  obsHtml\n    ? (\n        '<tr><td style=\"padding:14px 26px 4px 26px;\">' +\n\n        '<div style=\"font-family:Georgia,serif;font-size:15px;font-weight:bold;color:' +\n        SLATE +\n        ';\">' +\n        'Reported by the patient' +\n        '</div>' +\n\n        '<ul style=\"font-size:14px;color:' +\n        INK +\n        ';line-height:1.5;margin:6px 0 0 0;padding-left:20px;\">' +\n        obsHtml +\n        '</ul>' +\n\n        '</td></tr>'\n      )\n    : ''\n) +\n\n(\n  qHtml\n    ? (\n        '<tr><td style=\"padding:16px 26px;\">' +\n\n        '<table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"background:' +\n        SLATE +\n        ';border-radius:8px;\">' +\n\n        '<tr><td style=\"padding:18px 20px;\">' +\n\n        '<div style=\"color:#7FD1CE;font-family:Georgia,serif;font-size:15px;font-weight:bold;margin-bottom:9px;\">' +\n        'Ask the patient' +\n        '</div>' +\n\n        '<ul style=\"color:#E4ECF0;font-size:14px;line-height:1.5;margin:0;padding-left:20px;\">' +\n        qHtml +\n        '</ul>' +\n\n        '</td></tr>' +\n\n        '</table>' +\n\n        '</td></tr>'\n      )\n    : ''\n) +\n\n'<tr><td style=\"padding:0 26px 6px 26px;\">' +\n\n'<div style=\"background:' +\nCREAM +\n';border-radius:6px;padding:12px 14px;font-size:13px;color:' +\nINK +\n';\">' +\n\n'<strong>Front desk:</strong> ' +\nesc(prep) +\n\n'</div>' +\n\n'</td></tr>' +\n\n'<tr><td style=\"padding:8px 26px 18px 26px;\">' +\n\n'<div style=\"font-size:11.5px;color:' +\nGREY +\n';line-height:1.45;\">' +\n\nesc(caution) +\n\n' Patient words are reproduced as received. Ref ' +\n\nesc(d.record_id) +\n\n'.' +\n\n'</div>' +\n\n'</td></tr>' +\n\n'<tr><td style=\"background:' +\nSLATE +\n';padding:12px 26px;\">' +\n\n'<div style=\"color:#9AB2C0;font-size:11px;\">' +\n\nesc(d.clinic_name) +\n\n' &middot; Patient Journey Agent &middot; Powered by Haus of Intelligence' +\n\n'</div>' +\n\n'</td></tr>' +\n\n'</table>' +\n\n'</div>';\n\nreturn [\n  {\n    json: {\n      doctor_brief_html: html,\n      brief_ok: briefOk,\n      issue_count: issues.length\n    }\n  }\n];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3168,
+        0
+      ],
+      "id": "54b64152-fb72-43da-a623-6835bbf2718f",
+      "name": "Build Doctor Brief"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Slot & Route Engine').item.json.doctor_email }}",
+        "subject": "=[{{ $(\"Slot & Route Engine\").first().json.urgency }}] {{ $(\"Slot & Route Engine\").first().json.patient_name }} - {{ $(\"Slot & Route Engine\").first().json.specialty }} - {{ $(\"Slot & Route Engine\").first().json.appointment_slot }}",
+        "message": "={{ $json.doctor_brief_html }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        3328,
+        0
+      ],
+      "id": "21c20b88-26a4-4002-8ca1-9a8a846022d7",
+      "name": "Send Doctor Brief",
+      "webhookId": "7ce74f81-bb29-4055-aedb-d4c676c8fa01",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "qN5tAk1JWrkqoA7y",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1i0UpvT88WigqQcl71_blLubh0IIi1kPgueTSZfxb7oY",
+          "mode": "list",
+          "cachedResultName": "Clinic Master",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i0UpvT88WigqQcl71_blLubh0IIi1kPgueTSZfxb7oY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Patient_Log",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i0UpvT88WigqQcl71_blLubh0IIi1kPgueTSZfxb7oY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "record_id": "={{ $('Slot & Route Engine').item.json.record_id }}",
+            "received_at": "={{ $('Slot & Route Engine').item.json.received_at }}",
+            "channel": "={{ $('Slot & Route Engine').item.json.channel }}",
+            "patient_name": "={{ $('Slot & Route Engine').item.json.patient_name }}",
+            "patient_phone": "={{ $('Slot & Route Engine').item.json.patient_phone }}",
+            "patient_email": "={{ $('Slot & Route Engine').item.json.patient_email }}",
+            "message_text": "={{ $('Slot & Route Engine').item.json.message_text }}",
+            "intent": "={{ $('Slot & Route Engine').item.json.intent }}",
+            "urgency": "={{ $('Slot & Route Engine').item.json.urgency }}",
+            "red_flags": "={{ $('Slot & Route Engine').item.json.red_flags_text }}",
+            "symptoms": "={{ $('Slot & Route Engine').item.json.symptoms }}",
+            "duration": "={{ $('Slot & Route Engine').item.json.duration }}",
+            "specialty": "={{ $('Slot & Route Engine').item.json.specialty }}",
+            "doctor": "={{ $('Slot & Route Engine').item.json.doctor }}",
+            "appointment_id": "={{ $('Slot & Route Engine').item.json.appointment_id }}",
+            "appointment_slot": "={{ $('Slot & Route Engine').item.json.appointment_slot }}",
+            "status": "={{ $('Slot & Route Engine').item.json.status }}",
+            "patient_reply_sent": "={{ $(\"Build Patient Reply\").first().json.reply_ok ? \"yes\" : \"fallback\" }}",
+            "brief_sent": "={{ $(\"Build Doctor Brief\").first().json.brief_ok ? \"yes\" : \"fallback\" }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "record_id",
+              "displayName": "record_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "received_at",
+              "displayName": "received_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "channel",
+              "displayName": "channel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "patient_name",
+              "displayName": "patient_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "patient_phone",
+              "displayName": "patient_phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "patient_email",
+              "displayName": "patient_email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "message_text",
+              "displayName": "message_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "intent",
+              "displayName": "intent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "urgency",
+              "displayName": "urgency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "red_flags",
+              "displayName": "red_flags",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "symptoms",
+              "displayName": "symptoms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "duration",
+              "displayName": "duration",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "specialty",
+              "displayName": "specialty",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "doctor",
+              "displayName": "doctor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "appointment_id",
+              "displayName": "appointment_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "appointment_slot",
+              "displayName": "appointment_slot",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "patient_reply_sent",
+              "displayName": "patient_reply_sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            },
+            {
+              "id": "brief_sent",
+              "displayName": "brief_sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        3488,
+        0
+      ],
+      "id": "3c427676-d4d0-4a83-b777-93a92f7240a7",
+      "name": "Log Patient Record",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "G3QagzDzhQeqoFIp",
+          "name": "Google Sheets account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "1i0UpvT88WigqQcl71_blLubh0IIi1kPgueTSZfxb7oY",
+          "mode": "list",
+          "cachedResultName": "Clinic Master",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i0UpvT88WigqQcl71_blLubh0IIi1kPgueTSZfxb7oY/edit?usp=drivesdk"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Patient_Log",
+          "cachedResultUrl": "https://docs.google.com/spreadsheets/d/1i0UpvT88WigqQcl71_blLubh0IIi1kPgueTSZfxb7oY/edit#gid=0"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "record_id": "={{ $('Slot & Route Engine').item.json.record_id }}",
+            "received_at": "={{ $('Slot & Route Engine').item.json.received_at }}",
+            "channel": "={{ $('Slot & Route Engine').item.json.channel }}",
+            "patient_name": "={{ $('Slot & Route Engine').item.json.patient_name }}",
+            "patient_phone": "={{ $('Slot & Route Engine').item.json.patient_phone }}",
+            "patient_email": "={{ $('Slot & Route Engine').item.json.patient_email }}",
+            "message_text": "={{ $('Slot & Route Engine').item.json.message_text }}",
+            "intent": "={{ $('Slot & Route Engine').item.json.intent }}",
+            "urgency": "={{ $('Slot & Route Engine').item.json.urgency }}",
+            "red_flags": "={{ $('Slot & Route Engine').item.json.red_flags_text }}",
+            "symptoms": "={{ $('Slot & Route Engine').item.json.symptoms }}",
+            "duration": "={{ $('Slot & Route Engine').item.json.duration }}",
+            "specialty": "={{ $('Slot & Route Engine').item.json.specialty }}",
+            "doctor": "={{ $('Slot & Route Engine').item.json.doctor }}",
+            "appointment_id": "={{ $('Slot & Route Engine').item.json.appointment_id }}",
+            "appointment_slot": "={{ $('Slot & Route Engine').item.json.appointment_slot }}",
+            "status": "={{ $('Slot & Route Engine').item.json.status }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "record_id",
+              "displayName": "record_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "received_at",
+              "displayName": "received_at",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "channel",
+              "displayName": "channel",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "patient_name",
+              "displayName": "patient_name",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "patient_phone",
+              "displayName": "patient_phone",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "patient_email",
+              "displayName": "patient_email",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "message_text",
+              "displayName": "message_text",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "intent",
+              "displayName": "intent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "urgency",
+              "displayName": "urgency",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "red_flags",
+              "displayName": "red_flags",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "symptoms",
+              "displayName": "symptoms",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "duration",
+              "displayName": "duration",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "specialty",
+              "displayName": "specialty",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "doctor",
+              "displayName": "doctor",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "appointment_id",
+              "displayName": "appointment_id",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "appointment_slot",
+              "displayName": "appointment_slot",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "status",
+              "displayName": "status",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "patient_reply_sent",
+              "displayName": "patient_reply_sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            },
+            {
+              "id": "brief_sent",
+              "displayName": "brief_sent",
+              "required": false,
+              "defaultMatch": false,
+              "display": true,
+              "type": "string",
+              "canBeUsedToMatch": true
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        2080,
+        -160
+      ],
+      "id": "d795d8fa-6045-4bdd-b2f8-541956af84eb",
+      "name": "Log Emergency Record",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "G3QagzDzhQeqoFIp",
+          "name": "Google Sheets account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Test Trigger": {
+      "main": [
+        [
+          {
+            "node": "Demo Patient Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Demo Patient Message": {
+      "main": [
+        [
+          {
+            "node": "Normalise Intake",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Request": {
+      "main": [
+        [
+          {
+            "node": "Normalise Intake",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Config": {
+      "main": [
+        [
+          {
+            "node": "Read Patient History",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Patient History": {
+      "main": [
+        [
+          {
+            "node": "Read Clinic KB",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Read Clinic KB": {
+      "main": [
+        [
+          {
+            "node": "Assemble Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalise Intake": {
+      "main": [
+        [
+          {
+            "node": "Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Assemble Context": {
+      "main": [
+        [
+          {
+            "node": "Triage Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Triage Agent": {
+      "main": [
+        [
+          {
+            "node": "Normalise Triage Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Slot & Route Engine": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Alert Clinic",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Patient Reply Composer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Patient Reply Composer": {
+      "main": [
+        [
+          {
+            "node": "Normalise Reply Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Patient Reply": {
+      "main": [
+        [
+          {
+            "node": "Send Patient Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Patient Reply": {
+      "main": [
+        [
+          {
+            "node": "Doctor Brief Writer",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalise Triage Output": {
+      "main": [
+        [
+          {
+            "node": "Slot & Route Engine",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalise Reply Output": {
+      "main": [
+        [
+          {
+            "node": "Build Patient Reply",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Doctor Brief Writer": {
+      "main": [
+        [
+          {
+            "node": "Normalise Brief Output",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Normalise Brief Output": {
+      "main": [
+        [
+          {
+            "node": "Build Doctor Brief",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Build Doctor Brief": {
+      "main": [
+        [
+          {
+            "node": "Send Doctor Brief",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Doctor Brief": {
+      "main": [
+        [
+          {
+            "node": "Log Patient Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Alert Clinic": {
+      "main": [
+        [
+          {
+            "node": "Log Emergency Record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "bcb872dd-ec82-4adb-83c0-d0c9185cef87",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "609d5b8368084c14a68ed810c94c3b2b559839174f02ec5d9469ffbaf069ed41"
+  },
+  "nodeGroups": [],
+  "id": "Jycqd7ogjFGpk89e",
+  "tags": []
+}
